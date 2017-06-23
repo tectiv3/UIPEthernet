@@ -183,7 +183,7 @@
 #endif
 
 #if defined(__MBED__) || defined(ARDUINO_ARCH_SAM) || defined(__ARDUINO_ARC__) || defined(__STM32F1__) || defined(__STM32F3__) || defined(STM32F3) || defined(__STM32F4__) || defined(ESP8266) || defined(ESP32) || defined(ARDUINO_ARCH_AMEBA) || defined(__MK20DX128__) || defined(__MKL26Z64__) || defined(__MK20DX256__) || defined(__MK64FX512__) || defined(__MK66FX1M0__) || defined(__RFduino__)
-   #if defined(ARDUINO) && defined(STM32F3) || defined(ESP32)
+   #if defined(ARDUINO) && defined(STM32F3)
       #include "HardwareSPI.h"
    #else
       #include <SPI.h>
