@@ -174,7 +174,7 @@ MemoryPool::freeBlock(memhandle handle)
       if (next == NOBLOCK)
         return;
       b = &blocks[next];
-      #if defined(ESP8266)
+      #if defined(ESP8266) || defined(ESP32)
 //        yield();
       #endif
     }

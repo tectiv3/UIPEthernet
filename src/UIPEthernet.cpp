@@ -209,7 +209,7 @@ if (Enc28J60Network::geterevid()==0)
    #endif
    return;
    }
-#if defined(ESP8266)
+#if defined(ESP8266) || defined(ESP32)
   wdt_reset();
 #endif
   if (in_packet == NOBLOCK)

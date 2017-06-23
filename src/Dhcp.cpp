@@ -151,7 +151,7 @@ int DhcpClass::request_DHCP_lease(void){
         
         if(result != 1 && ((millis() - startTime) > DHCP_TIMEOUT))
             break;
-    #if defined(ESP8266)
+    #if defined(ESP8266) || defined(ESP32)
        wdt_reset();
     #endif
     }
