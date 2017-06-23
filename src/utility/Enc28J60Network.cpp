@@ -204,7 +204,7 @@ void Enc28J60Network::init(uint8_t* macaddr)
     {
     timeout=timeout-1;
     delay(10);
-    #if defined(ESP8266) || defined(ESP32)
+    #if defined(ESP8266)
        wdt_reset();
     #endif
     }
@@ -243,7 +243,7 @@ void Enc28J60Network::init(uint8_t* macaddr)
   #if ACTLOGLEVEL>=LOG_DEBUG_V3
     LogObject.uart_send_strln(F("ENC28J60::init DEBUG_V3:After writeReg(ERXFCON, ERXFCON_UCEN|ERXFCON_CRCEN|ERXFCON_PMEN|ERXFCON_BCEN)"));
   #endif
-  #if defined(ESP8266) || defined(ESP32)
+  #if defined(ESP8266)
      wdt_reset();
   #endif
   writeRegPair(EPMM0, 0x303f);
@@ -320,7 +320,7 @@ Enc28J60Network::receivePacket(void)
   #if ACTLOGLEVEL>=LOG_DEBUG_V3
     LogObject.uart_send_strln(F("Enc28J60Network::receivePacket(void) DEBUG_V3:Function started"));
   #endif
-  #if defined(ESP8266) || defined(ESP32)
+  #if defined(ESP8266)
      wdt_reset();
   #endif
   uint8_t rxstat;
@@ -418,7 +418,7 @@ Enc28J60Network::sendPacket(memhandle handle)
   #if ACTLOGLEVEL>=LOG_DEBUG_V3
     LogObject.uart_send_strln(F("Enc28J60Network::sendPacket(memhandle handle) INFO:Function started"));
   #endif
-  #if defined(ESP8266) || defined(ESP32)
+  #if defined(ESP8266)
      wdt_reset();
   #endif
   if (erevid==0)
@@ -484,7 +484,7 @@ Enc28J60Network::sendPacket(memhandle handle)
       {
       timeout=timeout-1;
       delay(10);
-      #if defined(ESP8266) || defined(ESP32)
+      #if defined(ESP8266)
          wdt_reset();
       #endif
       }
@@ -534,7 +534,7 @@ Enc28J60Network::readPacket(memhandle handle, memaddress position, uint8_t* buff
   #if ACTLOGLEVEL>=LOG_DEBUG_V3
     LogObject.uart_send_strln(F("Enc28J60Network::readPacket(memhandle handle, memaddress position, uint8_t* buffer, uint16_t len) DEBUG_V3:Function started"));
   #endif
-  #if defined(ESP8266) || defined(ESP32)
+  #if defined(ESP8266)
      wdt_reset();
   #endif
   len = setReadPtr(handle, position, len);
@@ -564,7 +564,7 @@ Enc28J60Network::writePacket(memhandle handle, memaddress position, uint8_t* buf
     LogObject.uart_send_str(F("Enc28J60Network::writePacket(memhandle handle, memaddress position, uint8_t* buffer, uint16_t len) DEBUG_V3:Function started with len:"));
     LogObject.uart_send_decln(len);
   #endif
-  #if defined(ESP8266) || defined(ESP32)
+  #if defined(ESP8266)
      wdt_reset();
   #endif
   memblock *packet = &blocks[handle];
@@ -649,7 +649,7 @@ uint8_t Enc28J60Network::readByte(uint16_t addr)
   #if ACTLOGLEVEL>=LOG_DEBUG_V3
     LogObject.uart_send_strln(F("Enc28J60Network::readByte(uint16_t addr) DEBUG_V3:Function started"));
   #endif
-  #if defined(ESP8266) || defined(ESP32)
+  #if defined(ESP8266)
      wdt_reset();
   #endif
   writeRegPair(ERDPTL, addr);
@@ -686,7 +686,7 @@ void Enc28J60Network::writeByte(uint16_t addr, uint8_t data)
   #if ACTLOGLEVEL>=LOG_DEBUG_V3
     LogObject.uart_send_strln(F("Enc28J60Network::writeByte(uint16_t addr, uint8_t data) DEBUG_V3:Function started"));
   #endif
-  #if defined(ESP8266) || defined(ESP32)
+  #if defined(ESP8266)
      wdt_reset();
   #endif
   writeRegPair(EWRPTL, addr);
@@ -1033,7 +1033,7 @@ Enc28J60Network::phyWrite(uint8_t address, uint16_t data)
   while (readReg(MISTAT) & MISTAT_BUSY)
     {
     delay(10);
-    #if defined(ESP8266) || defined(ESP32)
+    #if defined(ESP8266)
        wdt_reset();
     #endif
     if (--timeout == 0)
@@ -1059,7 +1059,7 @@ Enc28J60Network::phyRead(uint8_t address)
   while(readReg(MISTAT) & MISTAT_BUSY)
     {
     delay(10);
-    #if defined(ESP8266) || defined(ESP32)
+    #if defined(ESP8266)
        wdt_reset();
     #endif
     if (--timeout == 0)

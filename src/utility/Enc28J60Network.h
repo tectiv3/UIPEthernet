@@ -71,11 +71,13 @@
 #endif
 
 #if !defined(ENC28J60_CONTROL_CS)
-   #if defined(__AVR__) || defined(ESP8266) || defined(__RFduino__) || defined(ESP32)
+   #if defined(__AVR__) || defined(ESP8266) || defined(__RFduino__)
       // Arduino Uno (__AVR__) SS defined to pin 10
       // Arduino Mega(__AVR_ATmega2560__) SS defined to pin 53
       // ESP8266 (ESP8266) SS defined to pin 15
       #define ENC28J60_CONTROL_CS     SS
+   #elif defined(ESP32)
+      #define ENC28J60_CONTROL_CS     5
    #elif defined(ARDUINO_ARCH_AMEBA) //Defined SS to pin 10
       #define ENC28J60_CONTROL_CS     SS //PC_0 A5 10
    #elif defined(ARDUINO_ARCH_SAM)
